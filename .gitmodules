@@ -1,0 +1,6 @@
+[submodule "src/stretch_ros"]
+	path = src/stretch_ros
+	url = https://github.com/PickNikRobotics/stretch_ros.git
+[submodule "src/stretch_moveit_plugin"]
+	path = src/stretch_moveit_plugin
+	url = https://github.com/PickNikRobotics/stretch_moveit_plugins.git
