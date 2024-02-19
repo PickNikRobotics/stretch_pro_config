@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(stretch_pro_config)
+project(stretch_re1_pro_config)
 
 find_package(ament_cmake REQUIRED)
 
