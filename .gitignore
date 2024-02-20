@@ -1,0 +1,5 @@
+.ccache/
+build/
+install/
+log/
+.vscode/
