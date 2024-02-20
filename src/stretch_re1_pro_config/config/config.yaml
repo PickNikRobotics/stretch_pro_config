@@ -224,4 +224,4 @@ objectives:
   # [Required]
   waypoints_file:
     package_name: "stretch_re1_pro_config"
-    relative_path: "waypoints/ur_waypoints.yaml"
+    relative_path: "waypoints/stretch_waypoints.yaml"
