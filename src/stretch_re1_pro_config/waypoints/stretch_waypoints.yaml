@@ -1,0 +1,12 @@
+- name: Home
+  favorite: true
+  joint_state:
+    header:
+      frame_id: world
+      stamp:
+        sec: 0
+        nanosec: 0
+    name: [joint_lift, joint_arm_l0, joint_arm_l1, joint_arm_l2, joint_arm_l3, joint_wrist_yaw, joint_head_pan, joint_head_tilt, joint_gripper_finger_left, joint_gripper_finger_right, position]
+    position: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    velocity: []
+    effort: []
