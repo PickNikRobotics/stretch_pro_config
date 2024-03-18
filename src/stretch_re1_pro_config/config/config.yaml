@@ -47,9 +47,9 @@ hardware:
   # Specify any additional launch files for running the robot in simulation mode.
   # Used when hardware.simulated is True.
   # [Optional, defaults to a blank launch file if not specified]
-  simulated_robot_driver_persist_launch_file:
-    package: "stretch_re1_pro_config"
-    path: "launch/sim/robot_drivers_to_persist_sim.launch.py"
+  # simulated_robot_driver_persist_launch_file:
+  #   package: "stretch_re1_pro_config"
+  #   path: "launch/sim/robot_drivers_to_persist_sim.launch.py"
   # simulated_hardware_launch_file:
   #   package: "moveit_studio_agent"
   #   path: "launch/blank.launch.py"
@@ -163,11 +163,13 @@ ros2_control:
   # [Optional, default=[]]
   controllers_active_at_startup:
     - "joint_state_broadcaster"
+    - "diff_drive_controller"
     - "servo_controller"
   # Load but do not start these controllers so they can be activated later if needed.
   # [Optional, default=[]]
   controllers_inactive_at_startup:
     - "stretch_controller"
+    - "stretch_base_controller"
   # Any controllers here will not be spawned by MoveIt Pro.
   # [Optional, default=[]]
   controllers_not_managed: []
