@@ -112,6 +112,10 @@ moveit_params:
   kinematics:
     package: "stretch_re1_pro_config"
     path: "config/moveit/kinematics.yaml"
+  # NOTE: This is not supported yet
+  # moveit_simple_controller_manager:
+  #   package: "stretch_re1_pro_config"
+  #   path: "config/moveit/moveit_simple_controller_manager.yaml"
   servo:
     package: "stretch_re1_pro_config"
     path: "config/moveit/stretch_servo.yaml"
