@@ -38,4 +38,10 @@ def generate_launch_description():
                          output='log',
                          arguments=['0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'world', 'odom'])
 
-    return LaunchDescription([static_tf])
+    # TODO(henningkayser): make mdof_joint_state_publisher a proper MoveGroup capability, or ros2_controller?
+    odom_to_mdof_joint_state_repub = Node(package='stretch_re1_pro_config',
+                                          executable='repub_odometry_mdof_joint_states.py',
+                                          name='odom_to_mdof_joint_state_repub',
+                                          output='log')
+
+    return LaunchDescription([static_tf, odom_to_mdof_joint_state_repub])

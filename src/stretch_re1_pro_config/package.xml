@@ -5,17 +5,18 @@
 
   <description>Base configuration package for Stretch RE1</description>
 
-  <maintainer email="support@picknik.ai">MoveIt Pro Maintainer</maintainer>
+  <maintainer email="henningkayser@picknik.ai">Henning Kayser</maintainer>
 
   <license>BSD-3-Clause</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
+  <exec_depend>geometry_msgs</exec_depend>
   <exec_depend>moveit_planners_stomp</exec_depend>
   <exec_depend>moveit_ros_perception</exec_depend>
   <exec_depend>moveit_studio_agent</exec_depend>
   <exec_depend>moveit_studio_behavior</exec_depend>
-  <exec_depend>trac_ik_kinematics_plugin</exec_depend>
+  <exec_depend>rclpy</exec_depend>
   <exec_depend>stretch_description</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
