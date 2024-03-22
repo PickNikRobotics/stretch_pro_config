@@ -145,6 +145,7 @@ moveit_params:
     allowed_execution_duration_scaling: 2.0
     allowed_goal_duration_margin: 5.0
     allowed_start_tolerance: 0.01
+    control_multi_dof_joint_variables: True
 
 # Configuration for launching ros2_control processes.
 # [Required, if using ros2_control]
