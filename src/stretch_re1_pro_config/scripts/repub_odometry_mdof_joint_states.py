@@ -9,12 +9,32 @@ import tf2_geometry_msgs
 from geometry_msgs.msg import Transform, Pose, Vector3, Wrench
 
 class OdometryMultiDOFJointStateRepublisher(Node):
-    def __init__(self):
+    """! The Odometry to MultiDOFJointState republisher node.
+
+    Subscribes to Odometry messages, copies the data into a MultiDOFJointState,
+    which are published to '/multi_dof_joint_states'.
+    """
+
+    def __init__(self, odom_topic, mdof_topic):
+        """! Initialize Odometry subscriber and MultiDOFJointState publisher.
+
+        @param odom_topic topic name to use for Odometry subscription
+        @param mdof_topic topic name to use for MultiDOFJointState publishing
+
+        @return Instance of the OdometryMultiDOFJointStateRepublisher node
+        """
+
         super().__init__('odometry_mdof_state_republisher')
-        self.odom_sub_ = self.create_subscription(Odometry, '/diff_drive_controller/odom', self.odom_callback, 1)
-        self.mdof_state_pub_ = self.create_publisher(MultiDOFJointState, '/multi_dof_joint_states', 1)
+        self.odom_sub_ = self.create_subscription(Odometry, odom_topic, self.odom_callback, 1)
+        self.mdof_state_pub_ = self.create_publisher(MultiDOFJointState, mdof_topic, 1)
 
     def odom_callback(self, odom_msg):
+        """! Subscription callback to run for incoming Odometry messages
+
+        Each Odometry message is copied into a MultiDOFJointState message and republished 
+        to a different topic.
+
+        """
         mdof_state_msg = MultiDOFJointState()
         mdof_state_msg.joint_names = ["position"]
         transform = Transform()
@@ -30,7 +50,8 @@ class OdometryMultiDOFJointStateRepublisher(Node):
 def main(args=None):
   rclpy.init(args=args)
 
-  odometry_repub = OdometryMultiDOFJointStateRepublisher()
+  # TODO(moveit_studio#7004) Expose topic names and joint name to launch config
+  odometry_repub = OdometryMultiDOFJointStateRepublisher('/diff_drive_controller/odom', '/multi_dof_joint_states')
 
   rclpy.spin(odometry_repub)
 
