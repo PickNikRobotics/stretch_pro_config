@@ -106,12 +106,15 @@ moveit_params:
   stomp_planning:
     package: "stretch_re1_pro_config"
     path: "config/moveit/stomp_planning.yaml"
-  # pilz_planning:
-  #   package: "stretch_re1_pro_config"
-  #   path: "config/moveit/pilz_industrial_motion_planner_planning.yaml"
+  pilz_planning:
+    package: "stretch_re1_pro_config"
+    path: "config/moveit/pilz_industrial_motion_planner_planning.yaml"
   kinematics:
     package: "stretch_re1_pro_config"
     path: "config/moveit/kinematics.yaml"
+  moveit_simple_controller_manager:
+    package: "stretch_re1_pro_config"
+    path: "config/moveit/moveit_simple_controller_manager.yaml"
   servo:
     package: "stretch_re1_pro_config"
     path: "config/moveit/stretch_servo.yaml"
@@ -120,16 +123,16 @@ moveit_params:
     path: "config/moveit/sensors_3d.yaml"
   servo_kinematics:
     package: "stretch_re1_pro_config"
-    path: "config/moveit/trac_ik_kinematics_speed.yaml"
+    path: "config/moveit/kinematics.yaml"
   joint_limits:
     package: "stretch_re1_pro_config"
     path: "config/moveit/joint_limits.yaml"
   servo_joint_limits:
     package: "stretch_re1_pro_config"
     path: "config/moveit/joint_limits.yaml"
-  # pilz_cartesian_limits:
-  #   package: "stretch_re1_pro_config"
-  #   path: "config/moveit/pilz_cartesian_limits.yaml"
+  pilz_cartesian_limits:
+    package: "stretch_re1_pro_config"
+    path: "config/moveit/pilz_cartesian_limits.yaml"
 
   publish:
     planning_scene: True
@@ -142,14 +145,7 @@ moveit_params:
     allowed_execution_duration_scaling: 2.0
     allowed_goal_duration_margin: 5.0
     allowed_start_tolerance: 0.01
-
-# Additional configurable parameters for the MoveIt Pro user interface.
-# TODO - Find the right frame
-# [Required]
-ui_params:
-  # By default, we use a frame named "grasp_link" for tool grasp pose rendering and planning.
-  # [Required]
-  servo_endpoint_frame_id: "grasp_link"
+    control_multi_dof_joint_variables: True
 
 # Configuration for launching ros2_control processes.
 # [Required, if using ros2_control]
@@ -163,11 +159,12 @@ ros2_control:
   # [Optional, default=[]]
   controllers_active_at_startup:
     - "joint_state_broadcaster"
-    - "servo_controller"
+    - "diff_drive_controller"
+    - "stretch_base_controller"
+    - "stretch_controller"
   # Load but do not start these controllers so they can be activated later if needed.
   # [Optional, default=[]]
-  controllers_inactive_at_startup:
-    - "stretch_controller"
+  controllers_inactive_at_startup: []
   # Any controllers here will not be spawned by MoveIt Pro.
   # [Optional, default=[]]
   controllers_not_managed: []

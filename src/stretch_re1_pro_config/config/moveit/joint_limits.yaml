@@ -58,13 +58,22 @@ joint_limits:
     max_velocity: 3.0
     has_acceleration_limits: true
     max_acceleration: 8.0
+
+# The max velocity of the stretch robot is 0.6m/s
+# Since the limits are applied by dimension, diagonal motions will allow a squared norm of the x/y limits.
+# The 0.42m/s is set to not exceed the max velocity in diagonal motions.
   position/x:
     has_velocity_limits: true
-    max_velocity: 0.15
+    max_velocity: 0.42
+    has_acceleration_limits: true
+    max_acceleration: 0.2
+  position/y:
+    has_velocity_limits: true
+    max_velocity: 0.42
     has_acceleration_limits: true
     max_acceleration: 0.2
   position/theta:
     has_velocity_limits: true
-    max_velocity: 0.15
+    max_velocity: 0.42
     has_acceleration_limits: true
     max_acceleration: 0.2
