@@ -2,19 +2,178 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="stretch_description">
     <xacro:arg name="use_fake_controller" default="false"/>
 
+    <link name="world"/>
+    <link name="odom"/>
+
+    <joint name="world_to_odom" type="fixed">
+        <parent link="world"/>
+        <child link="odom"/>
+    </joint>
+
+    <joint name="position" type="planar">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <parent link="odom"/>
+        <child link="base_link"/>
+    </joint>
+
+    <link name="coffee_shop">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find stretch_re1_pro_config)/meshes/coffee_shop/coffee_shop.dae"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="coffer_shop_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <parent link="world"/>
+        <child link="coffee_shop"/>
+    </joint>
+
+    <link name="table_1">
+        <collision>
+            <geometry>
+                <cylinder length="1.08" radius="0.872821"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="table_1_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="-1.78826  2.16121  0.527411"/>
+        <parent link="coffee_shop"/>
+        <child link="table_1"/>
+    </joint>
+
+    <link name="counter">
+        <collision>
+            <geometry>
+                <box size="2.25864 4.70984 1.10145"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="counter_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="-1.70269  7.15  0.32"/>
+        <parent link="coffee_shop"/>
+        <child link="counter"/>
+    </joint>
+
+    <link name="seating">
+        <collision>
+            <geometry>
+                <box size="1.667808 8.85682 1.10145"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="seating_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="1.7163 6.25859 0.534589"/>
+        <parent link="coffee_shop"/>
+        <child link="seating"/>
+    </joint>
+
+    <link name="table_2">
+        <collision>
+            <geometry>
+                <box size="1.659276 0.777632 1.10145"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="table_2_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="1.80086  -0.227837 0.214425"/>
+        <parent link="coffee_shop"/>
+        <child link="table_2"/>
+    </joint>
+
+    <link name="chair">
+        <collision>
+            <geometry>
+                <box size="0.880082 1.182248 1.10145"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="chair_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="-2.40742  0.120353 0.534589"/>
+        <parent link="coffee_shop"/>
+        <child link="chair"/>
+    </joint>
+
+    <link name="wall_1">
+        <collision>
+            <geometry>
+                <box size="5.98744 1.182248 3.51658"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="wall_1_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="-0.179149 -1.3163 1.74082"/>
+        <parent link="coffee_shop"/>
+        <child link="wall_1"/>
+    </joint>
+
+    <link name="wall_2">
+        <collision>
+            <geometry>
+                <box size="5.98744 1.182248 3.51658"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="wall_2_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="-0.179149 11.3328 1.74082"/>
+        <parent link="coffee_shop"/>
+        <child link="wall_2"/>
+    </joint>
+
+    <link name="wall_3">
+        <collision>
+            <geometry>
+                <box size="1.182248 12.84594 3.51658"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="wall_3_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="3.42022 4.99722 1.74082"/>
+        <parent link="coffee_shop"/>
+        <child link="wall_3"/>
+    </joint>
+
+    <link name="wall_4">
+        <collision>
+            <geometry>
+                <box size="1.182248 12.84594 3.51658"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="wall_4_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="-3.78447 4.99722 1.74082"/>
+        <parent link="coffee_shop"/>
+        <child link="wall_4"/>
+    </joint>
+
+
     <!-- Import stretch urdf file -->
-    <xacro:include filename="$(find stretch_description)/urdf/stretch_description.xacro" />
+    <xacro:include filename="$(find stretch_description)/urdf/stretch_description.xacro"/>
+
 
     <xacro:if value="$(arg use_fake_controller)">
         <!-- Import stretch ros2_control description -->
-        <xacro:include filename="stretch_arm.ros2_control.xacro" />
-        <xacro:include filename="stretch_head.ros2_control.xacro" />
-        <xacro:include filename="gripper.ros2_control.xacro" />
-        <xacro:include filename="stretch_base.ros2_control.xacro" />
+        <xacro:include filename="stretch_arm.ros2_control.xacro"/>
+        <xacro:include filename="stretch_head.ros2_control.xacro"/>
+        <xacro:include filename="gripper.ros2_control.xacro"/>
+        <xacro:include filename="stretch_base.ros2_control.xacro"/>
 
-        <xacro:stretch_arm_ros2_control name="StretchArmFakeJointDriver" />
-        <xacro:stretch_head_ros2_control name="StretchHeadFakeJointDriver" />
-        <xacro:stretch_base_ros2_control name="StretchBaseFakeJointDriver" />
-        <xacro:gripper_ros2_control name="StretchGripperFakeJointDriver" />
+        <xacro:stretch_arm_ros2_control name="StretchArmFakeJointDriver"/>
+        <xacro:stretch_head_ros2_control name="StretchHeadFakeJointDriver"/>
+        <xacro:stretch_base_ros2_control name="StretchBaseFakeJointDriver"/>
+        <xacro:gripper_ros2_control name="StretchGripperFakeJointDriver"/>
     </xacro:if>
+
+
 </robot>
