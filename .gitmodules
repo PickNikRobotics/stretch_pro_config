@@ -5,7 +5,7 @@
 [submodule "src/stretch_moveit_plugins"]
 	path = src/stretch_moveit_plugins
 	url = https://github.com/PickNikRobotics/stretch_moveit_plugins.git
-[submodule "src/ros2_controllers"]
-	path = src/ros2_controllers
-	url = https://github.com/henningkayser/ros2_controllers
-	branch = chainable-jtc-diff-drive
+[submodule "src/picknik_controllers"]
+	path = src/picknik_controllers
+	url = https://github.com/PickNikRobotics/picknik_controllers
+	branch = chainable_diff_drive

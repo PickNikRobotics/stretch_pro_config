@@ -16,6 +16,7 @@
   <exec_depend>moveit_ros_perception</exec_depend>
   <exec_depend>moveit_studio_agent</exec_depend>
   <exec_depend>moveit_studio_behavior</exec_depend>
+  <exec_depend>picknik_diff_drive_controller</exec_depend>
   <exec_depend>rclpy</exec_depend>
   <exec_depend>stretch_description</exec_depend>
 

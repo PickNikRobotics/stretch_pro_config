@@ -15,7 +15,7 @@ controller_manager:
       type: joint_trajectory_controller/JointTrajectoryController
 
     diff_drive_controller:
-      type: diff_drive_controller/DiffDriveController
+      type: picknik_diff_drive_controller/DiffDriveController
 
 stretch_controller:
   ros__parameters:
