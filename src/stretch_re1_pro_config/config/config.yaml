@@ -98,7 +98,7 @@ optional_feature_params:
 # [Required]
 moveit_params:
   # Used by the Waypoint Manager to save joint states from this joint group.
-  joint_group_name: "stretch_arm"
+  joint_group_name: "mobile_base_arm"
 
   ompl_planning:
     package: "stretch_re1_pro_config"
